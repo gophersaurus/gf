@@ -71,23 +71,17 @@ func project(name, git string, verbose bool) error {
 		return err
 	}
 
-	fmt.Println("cloned https://git.target.com/gophersaurus/gophersaurus.git")
-
 	// Rename gophersaurus directory by project name.
 	err = exec.Command("mv", "gophersaurus", name).Run()
 	if err != nil {
 		return err
 	}
 
-	fmt.Println("renamed gophersaurus -> " + name)
-
 	// Find and replace gophersaurus/gophersaurus, with org/name in the entire directory.
 	replacement := map[string]string{"git.target.com/gophersaurus/gophersaurus": "github.com/" + org + "/" + name}
 	if err = rwImports(name, replacement); err != nil {
 		return err
 	}
-
-	fmt.Println("renamed gophersaurus -> " + name)
 
 	return nil
 }
