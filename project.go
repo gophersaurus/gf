@@ -9,8 +9,7 @@ import (
 	"path"
 )
 
-// NewProject creates a new Gophersaurus project.
-func NewProject(name, git string, verbose bool) error {
+func project(name, git string, verbose bool) error {
 
 	var org string
 
@@ -47,7 +46,7 @@ func NewProject(name, git string, verbose bool) error {
 		if dir[0] == '/' {
 			dir = dir[1:]
 		}
-		dir = path.Clean(org)
+		dir = path.Clean(dir)
 
 		// Get the current working directory.
 		wd, err := os.Getwd()
@@ -83,11 +82,12 @@ func NewProject(name, git string, verbose bool) error {
 	fmt.Println("renamed gophersaurus -> " + name)
 
 	// Find and replace gophersaurus/gophersaurus, with org/name in the entire directory.
-	//find . -type f -print0 | xargs -0 sed -i 's/subdomainA.example.com/subdomainB.example.com/g'
-	err = exec.Command("find", "/"+name, "-type", "f", "-print0", "|", "xargs", "-0", "sed", "-i", "'s/gophersaurus//gophersaurus/"+org+"//"+name+"/g'").Run()
-	if err != nil {
+	replacement := map[string]string{"git.target.com/gophersaurus/gophersaurus": "github.com/" + org + "/" + name}
+	if err = rwImports(name, replacement); err != nil {
 		return err
 	}
+
+	fmt.Println("renamed gophersaurus -> " + name)
 
 	return nil
 }

@@ -10,7 +10,7 @@ import (
 // USAGE
 //
 // gf [global options..] command [command options...]          [arguments...]
-//    -v, -verbose       new     -g="git@github.git"           project
+//    -v, -verbose       project -g="git@github.git"           project
 //                               -git="https://github.com.git"
 //
 
@@ -38,9 +38,9 @@ func main() {
 	// define the list of commands.
 	app.Commands = []cli.Command{
 		{
-			Name:        "new",
+			Name:        "project",
 			Usage:       "Create a new Gophersaurus project.",
-			ShortName:   "new",
+			ShortName:   "p",
 			Description: "Use this command to initalize a new Gophersaurus project.",
 			Flags: []cli.Flag{
 				cli.StringFlag{
@@ -49,7 +49,7 @@ func main() {
 				},
 			},
 			Action: func(c *cli.Context) {
-				if err := NewProject(c.Args().First(), c.String("g"), c.GlobalBool("verbose")); err != nil {
+				if err := project(c.Args().First(), c.String("g"), c.GlobalBool("verbose")); err != nil {
 					panic(err)
 				}
 			},
