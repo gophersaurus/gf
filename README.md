@@ -1,4 +1,4 @@
-gf tool [![Build Status](http://drone.targetpivot.com/api/badge/git.target.com/gophersaurus/gf/status.svg?branch=master)](http://drone.targetpivot.com/git.target.com/gophersaurus/gf)
+gf [![Build Status](http://drone.targetpivot.com/api/badge/git.target.com/gophersaurus/gf/status.svg?branch=master)](http://drone.targetpivot.com/git.target.com/gophersaurus/gf)
 ==
 
 The Gophersaurus project tool.  Use this to start a new Gophersaurus project.
