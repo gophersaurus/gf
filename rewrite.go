@@ -30,12 +30,11 @@ func rewrite(dir string, replace map[string]string) error {
 			continue
 		}
 
-		// check the file is a go file.
+		// check the file is a .go file.
 		if !w.Stat().IsDir() && strings.HasSuffix(w.Path(), ".go") {
 
 			// rewrite the file.
-			err := rewriteFile(w.Path(), replace)
-			if err != nil {
+			if err := rewriteFile(w.Path(), replace); err != nil {
 				return err
 			}
 		}
@@ -61,7 +60,9 @@ func rewriteFile(name string, replace map[string]string) error {
 	// create an empty fileset.
 	fset := token.NewFileSet()
 
-	// parse the go file.
+	// parse the .go file.
+	// we are parsing the entire file with comments, so we don't lose anything
+	// if we need to write it back out.
 	f, err := parser.ParseFile(fset, name, nil, parser.ParseComments)
 	if err != nil {
 		return err
@@ -99,7 +100,7 @@ func rewriteFile(name string, replace map[string]string) error {
 		return err
 	}
 
-	// write changes to .temp file.
+	// write changes to .temp file, and include proper formatting.
 	err = (&printer.Config{Mode: printer.TabIndent | printer.UseSpaces, Tabwidth: 8}).Fprint(w, fset, f)
 	if err != nil {
 		return err
