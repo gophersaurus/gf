@@ -8,6 +8,7 @@ script:
   - go version
   - go get -u git.target.com/gophersaurus/gf
   - gf -h
+  - cd $GOPATH/src/github.com/org
   - gf new test
   - go get ./...
   - go build
