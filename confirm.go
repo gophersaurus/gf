@@ -1,7 +1,11 @@
-//
-// Note: code originally from Alex Browne.
-// URL: https://gist.github.com/albrow/5882501
-//
+/*
+*
+* NOTE: Code originally from Alex Browne.
+* 			I DO NOT TAKE CREDIT.  Thanks Alex.
+*
+* URL: https://gist.github.com/albrow/5882501
+*
+ */
 
 package main
 

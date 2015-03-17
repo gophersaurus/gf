@@ -7,7 +7,8 @@ import (
 	"path"
 )
 
-func project(name, git string, verbose bool) error {
+// create creates a new Gopheraurus project.
+func create(name, git string, verbose bool) error {
 
 	// Check if we a name or git url.
 	if len(name) == 0 && len(git) == 0 {
