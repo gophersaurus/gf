@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"runtime"
 
@@ -50,6 +51,7 @@ func main() {
 			},
 			Action: func(c *cli.Context) {
 				if err := create(c.Args().First(), c.String("o"), c.GlobalBool("verbose")); err != nil {
+					fmt.Println(err.Error())
 					panic(err)
 				}
 			},
