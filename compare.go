@@ -42,7 +42,9 @@ func compare(name, git string) (string, error) {
 
 		// compare
 		if uri != dir {
-			fmt.Println("gf warning: " + uri + " does not match " + dir + " - continue?")
+			fmt.Println("WARNING: " + uri + " does not match " + dir)
+			fmt.Println("Do you want to continue anyway?")
+			fmt.Println("Please type yes or no and then press enter:")
 			if !askForConfirmation() {
 				os.Exit(1)
 			}
