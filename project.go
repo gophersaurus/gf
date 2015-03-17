@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"os"
 	"os/exec"
 	"path"
 )
@@ -34,7 +35,7 @@ func project(name, git string, verbose bool) error {
 	}
 
 	// Rename gophersaurus directory by project name.
-	err = exec.Command("mv", "gophersaurus", name).Run()
+	err = os.Rename("gophersaurus", name)
 	if err != nil {
 		return err
 	}
