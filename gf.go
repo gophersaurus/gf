@@ -44,12 +44,12 @@ func main() {
 			Description: "Use this command to create a new Gophersaurus project.",
 			Flags: []cli.Flag{
 				cli.StringFlag{
-					Name:  "g, git",
-					Usage: "Git: Create the project with a git repository and create upstream.",
+					Name:  "o, origin",
+					Usage: "Origin: Create the project with a git remote origin.",
 				},
 			},
 			Action: func(c *cli.Context) {
-				if err := create(c.Args().First(), c.String("g"), c.GlobalBool("verbose")); err != nil {
+				if err := create(c.Args().First(), c.String("o"), c.GlobalBool("verbose")); err != nil {
 					panic(err)
 				}
 			},

@@ -13,10 +13,10 @@ Create a new project based on project name:
 * `gf new {project-name}`
 * `gf n {project-name}`
 
-Create a new project with `git remote origin`:
-* `gf new -git="https://github.com/org/project.git" {project-name}`
-* `gf n -g="https://github.com/org/project.git" {project-name}`
+Create a new project and set `git remote origin`:
+* `gf new -origin="https://github.com/org/project.git" {project-name}`
+* `gf n -o="https://github.com/org/project.git" {project-name}`
 
-Create a new project based on `remote origin`:
-* `gf new -git="https://github.com/org/project.git"`
-* `gf n -g="https://github.com/org/project.git"`
+Create a new project based on `git remote origin`:
+* `gf new -origin="https://github.com/org/project.git"`
+* `gf n -o="https://github.com/org/project.git"`
