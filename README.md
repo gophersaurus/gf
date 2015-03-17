@@ -3,10 +3,10 @@ gf tool [![Build Status](http://drone.targetpivot.com/api/badge/git.target.com/g
 
 The Gophersaurus command line tool.
 
-#Installation
+#Install
 
 `go get git.target.com/gophersaurus/gf`
 
-#Start A New Gophersaurus Project
+#Create a new project
 
-`gf project {name}`
+`gf new {project-name}`
