@@ -1,0 +1,10 @@
+image: go1.4
+git:
+  path: git.target.com/gophersaurus/gf
+env:
+  - GOROOT=/usr/local/go
+  - PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+script:
+  - go version
+  - go get ./...
+  - go test -v
