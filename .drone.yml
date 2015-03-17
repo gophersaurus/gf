@@ -14,9 +14,7 @@ script:
   - gf -h
 
   # create directories
-  - cd $GOPATH/src
-  - mkdir github.com
-  - cd github.com
+  - cd $GOPATH/src/github.com
   - mkdir org
   - cd org
 
