@@ -30,7 +30,7 @@ func create(name, git string, verbose bool) error {
 	}
 
 	// Clone the Gophersaurus repository.
-	err = exec.Command("git", "clone", "https://git.target.com/gophersaurus/gophersaurus.git").Run()
+	err = exec.Command("git", "clone", "git@git.target.com:gophersaurus/gophersaurus.git").Run()
 	if err != nil {
 		return err
 	}
