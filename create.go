@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"os"
 	"os/exec"
 	"path"
@@ -32,6 +33,7 @@ func create(name, git string, verbose bool) error {
 	// Clone the Gophersaurus repository.
 	err = exec.Command("git", "clone", "git@git.target.com:gophersaurus/gophersaurus.git").Run()
 	if err != nil {
+		fmt.Println("git clone git@git.target.com:gophersaurus/gophersaurus.git")
 		return err
 	}
 
