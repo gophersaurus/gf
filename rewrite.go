@@ -16,7 +16,7 @@ import (
 
 // rewriteImports takes a directory path and a map of key value strings and
 // updates the import path with those replacements.
-func rwImports(dir string, replace map[string]string) error {
+func rewrite(dir string, replace map[string]string) error {
 
 	// create a new walk.
 	w := fs.Walk(dir)
@@ -43,8 +43,8 @@ func rwImports(dir string, replace map[string]string) error {
 	return nil
 }
 
-// matchImportPath takes a file path and replacement map.
-func matchImportPath(path string, replace map[string]string) (string, bool) {
+// match takes a file path and replacement map.
+func match(path string, replace map[string]string) (string, bool) {
 	for key, value := range replace {
 		result := strings.Replace(path, key, value, 1)
 		if path != result {
@@ -78,7 +78,7 @@ func rewriteFile(name string, replace map[string]string) error {
 		}
 
 		// match import path with the given replacement map
-		if path, ok := matchImportPath(path, replace); ok {
+		if path, ok := match(path, replace); ok {
 			i.Path.Value = strconv.Quote(path)
 			change = true
 		}
