@@ -5,14 +5,24 @@ env:
   - GOROOT=/usr/local/go
   - PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 script:
+
+  # print golang version
   - go version
+
+  # get the gf tool
   - go get -u git.target.com/gophersaurus/gf
   - gf -h
-  - cd cd $GOPATH/src
+
+  # create directories
+  - cd $GOPATH/src
   - mkdir github.com
   - cd github.com
   - mkdir org
   - cd org
+
+  # create new test project
   - gf new test
+
+  # get deps and build
   - go get ./...
   - go build
