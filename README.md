@@ -5,11 +5,11 @@ The Gophersaurus project tool.
 
 > Requires git to be installed
 
-# Install
+## Install gf
 
 `go get git.target.com/gophersaurus/gf`
 
-# New Project
+## Create New Project
 
 The `gf` command line tool does the following when creating a new project:
   1. determine implied project `import` path with `$GOPATH`.
