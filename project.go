@@ -46,5 +46,21 @@ func project(name, git string, verbose bool) error {
 		return err
 	}
 
+	// If a git url has not been provided, lets make some assumptions.
+	if len(git) == 0 {
+
+		// Set the git remote upstream for easy updating.
+		err = exec.Command("git", "-C", name, "remote", "add", "upstream", "https://git.target.com/gophersaurus/gophersaurus.git").Run()
+		if err != nil {
+			return err
+		}
+
+		// set the git remote origin based on go src file path.
+		err = exec.Command("git", "-C", name, "remote", "set-url", "origin", "https://"+path+".git").Run()
+		if err != nil {
+			return err
+		}
+	}
+
 	return nil
 }
