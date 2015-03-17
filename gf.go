@@ -10,8 +10,8 @@ import (
 // USAGE
 //
 // gf [global options..] command [command options...]          [arguments...]
-//    -v, -verbose       install -g="git@github.git"           project
-//                               -git="https://github.com.git"
+//    -v, -verbose       new     -origin="git@github.git"      project-name
+//                       n       -o="https://github.com.git"
 //
 
 func main() {
