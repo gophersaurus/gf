@@ -10,6 +10,7 @@ script:
   - go version
 
   # get the gf tool
+  - go get -u git.target.com/gophersaurus/gf.v1
   - go get -u git.target.com/gophersaurus/gf
   - gf -h
 
