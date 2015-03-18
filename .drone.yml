@@ -10,8 +10,6 @@ script:
   - go version
 
   # get the gf tool
-  - go get -v git.target.com/gophersaurus/gf.v1/imgo.git
-  - go get -v git.target.com/gophersaurus/gf.v1.git
   - go get -v git.target.com/gophersaurus/gf
   - gf -h
 
@@ -22,7 +20,5 @@ script:
 
   # create new test project
   - gf new -s -sg test
-
-  # get deps and build
-  - go get ./...
-  - go build
+  - tree test
+  - cat test/main.go
