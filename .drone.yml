@@ -19,7 +19,7 @@ script:
   - cd org
 
   # create new test project
-  - gf new test
+  - gf new -s -sg test
 
   # get deps and build
   - go get ./...

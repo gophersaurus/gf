@@ -8,7 +8,7 @@ import (
 )
 
 // create creates a new Gopheraurus project.
-func create(name, git string, verbose bool) error {
+func create(name, git string, verbose, skip, skipgit bool) error {
 
 	// Check if we a name or git url.
 	if len(name) == 0 && len(git) == 0 {
@@ -24,7 +24,7 @@ func create(name, git string, verbose bool) error {
 	}
 
 	// compare the current directory path and git path.
-	path, err := compare(name, git)
+	importpath, err := compare(name, git, skip)
 	if err != nil {
 		return err
 	}
@@ -40,31 +40,34 @@ func create(name, git string, verbose bool) error {
 	}
 
 	// Find and replace gophersaurus/gophersaurus, with org/name in the entire directory.
-	replacement := map[string]string{"git.target.com/gophersaurus/gophersaurus": path}
+	replacement := map[string]string{"git.target.com/gophersaurus/gophersaurus": importpath}
 	if err = rewrite(name, replacement); err != nil {
 		return err
 	}
 
-	// Set the git remote upstream for easy updating.
-	if err := exec.Command("git", "-C", name, "remote", "add", "upstream", "https://git.target.com/gophersaurus/gophersaurus.git").Run(); err != nil {
-		return err
-	}
+	if !skipgit {
 
-	// Check if a git URL has been provided.
-	if len(git) > 0 {
-
-		// set the git remote origin based on git URL provided.
-		err = exec.Command("git", "-C", name, "remote", "set-url", "origin", git).Run()
-		if err != nil {
+		// Set the git remote upstream for easy updating.
+		if err := exec.Command("git", "-C", name, "remote", "add", "upstream", "https://git.target.com/gophersaurus/gophersaurus.git").Run(); err != nil {
 			return err
 		}
 
-		return nil
-	}
+		// Check if a git URL has been provided.
+		if len(git) > 0 {
 
-	// set the git remote origin based on go src file path.
-	if err := exec.Command("git", "-C", name, "remote", "set-url", "origin", "https://"+path+".git").Run(); err != nil {
-		return err
+			// set the git remote origin based on git URL provided.
+			err = exec.Command("git", "-C", name, "remote", "set-url", "origin", git).Run()
+			if err != nil {
+				return err
+			}
+
+			return nil
+		}
+
+		// set the git remote origin based on go src file path.
+		if err := exec.Command("git", "-C", name, "remote", "set-url", "origin", "https://"+importpath+".git").Run(); err != nil {
+			return err
+		}
 	}
 
 	return nil

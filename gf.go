@@ -13,6 +13,8 @@ import (
 // gf [global options..] command [command options...]          [arguments...]
 //    -v, -verbose       new     -origin="git@github.git"      project-name
 //                       n       -o="https://github.com.git"
+// 															 -s -skip
+//															 -sg -skipgit
 //
 
 func main() {
@@ -48,9 +50,17 @@ func main() {
 					Name:  "o, origin",
 					Usage: "Origin: Create the project with a git remote origin.",
 				},
+				cli.BoolFlag{
+					Name:  "s, skip",
+					Usage: "Skip: Skip any warnings that would require user input.",
+				},
+				cli.BoolFlag{
+					Name:  "sg, skipgit",
+					Usage: "Skip Git: Skip default git settings.",
+				},
 			},
 			Action: func(c *cli.Context) {
-				if err := create(c.Args().First(), c.String("o"), c.GlobalBool("verbose")); err != nil {
+				if err := create(c.Args().First(), c.String("o"), c.GlobalBool("verbose"), c.Bool("skip"), c.Bool("skipgit")); err != nil {
 					fmt.Println(err.Error())
 					panic(err)
 				}

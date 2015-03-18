@@ -9,7 +9,7 @@ import (
 
 // compare compares the git URL path to the go src directory path.
 // If the two are different then warn the user before preceding.
-func compare(name, git string) (string, error) {
+func compare(name, git string, skip bool) (string, error) {
 
 	// get the current directory path.
 	dir, err := src(name)
@@ -41,12 +41,14 @@ func compare(name, git string) (string, error) {
 		uri = uri[:len(uri)-len(path.Ext(uri))]
 
 		// compare
-		if uri != dir {
-			fmt.Println("WARNING: " + uri + " does not match " + dir)
-			fmt.Println("Do you want to continue anyway?")
-			fmt.Println("Please type yes or no and then press enter:")
-			if !askForConfirmation() {
-				os.Exit(1)
+		if !skip {
+			if uri != dir {
+				fmt.Println("WARNING: " + uri + " does not match " + dir)
+				fmt.Println("Do you want to continue anyway?")
+				fmt.Println("Please type yes or no and then press enter:")
+				if !askForConfirmation() {
+					os.Exit(1)
+				}
 			}
 		}
 	}
