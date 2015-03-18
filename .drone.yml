@@ -6,6 +6,9 @@ env:
   - PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 script:
 
+  # print $GOPATH
+  - echo $GOPATH
+
   # print golang version
   - go version
 
