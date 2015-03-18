@@ -2,7 +2,7 @@ image: bradrydzewski/go:1.4
 git:
   path: git.target.com/gophersaurus/gf
 env:
-  - PATH=$GOPATH/bin
+  - PATH=$PATH:$GOPATH/bin
 script:
 
   # print $GOPATH
