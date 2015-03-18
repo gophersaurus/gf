@@ -7,7 +7,7 @@ The Gophersaurus project tool.
   * Git installed
   * $GOPATH set
 
-## Install gf
+## Install
 
 `go get git.target.com/gophersaurus/gf`
 
