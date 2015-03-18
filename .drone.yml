@@ -2,8 +2,7 @@ image: bradrydzewski/go:1.4
 git:
   path: git.target.com/gophersaurus/gf
 env:
-  - GOROOT=/usr/local/go
-  - PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+  - PATH=$GOPATH/bin
 script:
 
   # print $GOPATH
