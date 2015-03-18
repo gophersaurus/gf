@@ -2,19 +2,16 @@ image: bradrydzewski/go:1.4
 git:
   path: git.target.com/gophersaurus/gf
 env:
-  - PATH=$PATH:$GOPATH/bin
+  - GOROOT=/usr/local/go
+  - PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 script:
-
-  # print $GOPATH
-  - echo $GOPATH
-  - ls -la $GOPATH
 
   # print golang version
   - go version
 
   # get the gf tool
-  - go get -u git.target.com/gophersaurus/gf.v1
-  - go get -u git.target.com/gophersaurus/gf
+  - go get -u -v git.target.com/gophersaurus/gf.v1
+  - go get -u -v git.target.com/gophersaurus/gf
   - gf -h
 
   # create directories
