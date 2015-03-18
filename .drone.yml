@@ -10,7 +10,7 @@ script:
   - go version
 
   # get the gf tool
-  - go get -u git.target.com/gophersaurus/gf
+  - go get -v git.target.com/gophersaurus/gf
   - gf -h
 
   # create directories
@@ -21,6 +21,7 @@ script:
   # create new test project
   - gf new -s -sg test
 
-  # get deps and build
-  - go get ./...
-  - go build
+  # show it worked
+  - sudo apt-get install tree
+  - tree test
+  - cat test/main.go
