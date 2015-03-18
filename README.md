@@ -3,7 +3,9 @@ gf [![Build Status](http://drone.targetpivot.com/api/badge/git.target.com/gopher
 
 The Gophersaurus project tool.
 
-> Requires git to be installed
+> Requires The Following:
+  * Git installed
+  * $GOPATH set
 
 ## Install gf
 
