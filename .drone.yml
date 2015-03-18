@@ -20,5 +20,8 @@ script:
 
   # create new test project
   - gf new -s -sg test
+
+  # show it worked
+  - apt-get install tree
   - tree test
   - cat test/main.go
