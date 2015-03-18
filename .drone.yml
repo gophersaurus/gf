@@ -8,6 +8,7 @@ script:
 
   # print $GOPATH
   - echo $GOPATH
+  - ls -la $GOPATH
 
   # print golang version
   - go version
