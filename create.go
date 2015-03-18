@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
 	"os"
 	"os/exec"
 	"path"
@@ -31,15 +30,12 @@ func create(name, git string, verbose bool) error {
 	}
 
 	// Clone the Gophersaurus repository.
-	err = exec.Command("git", "clone", "git@git.target.com:gophersaurus/gophersaurus.git").Run()
-	if err != nil {
-		fmt.Println("git clone git@git.target.com:gophersaurus/gophersaurus.git")
+	if err := exec.Command("git", "clone", "git@git.target.com:gophersaurus/gophersaurus.git").Run(); err != nil {
 		return err
 	}
 
 	// Rename gophersaurus directory by project name.
-	err = os.Rename("gophersaurus", name)
-	if err != nil {
+	if err := os.Rename("gophersaurus", name); err != nil {
 		return err
 	}
 
@@ -50,8 +46,7 @@ func create(name, git string, verbose bool) error {
 	}
 
 	// Set the git remote upstream for easy updating.
-	err = exec.Command("git", "-C", name, "remote", "add", "upstream", "https://git.target.com/gophersaurus/gophersaurus.git").Run()
-	if err != nil {
+	if err := exec.Command("git", "-C", name, "remote", "add", "upstream", "https://git.target.com/gophersaurus/gophersaurus.git").Run(); err != nil {
 		return err
 	}
 
@@ -68,8 +63,7 @@ func create(name, git string, verbose bool) error {
 	}
 
 	// set the git remote origin based on go src file path.
-	err = exec.Command("git", "-C", name, "remote", "set-url", "origin", "https://"+path+".git").Run()
-	if err != nil {
+	if err := exec.Command("git", "-C", name, "remote", "set-url", "origin", "https://"+path+".git").Run(); err != nil {
 		return err
 	}
 
