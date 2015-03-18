@@ -9,6 +9,9 @@ script:
   # print golang version
   - go version
 
+  # config git for Target GHE
+  - git config --global url."git@git.target.com:".insteadOf https://git.target.com
+
   # get the gf tool
   - go get -u -v git.target.com/gophersaurus/gf.v1
   - go get -u -v git.target.com/gophersaurus/gf
