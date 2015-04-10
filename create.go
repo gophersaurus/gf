@@ -30,17 +30,17 @@ func create(name, git string, verbose, skip, skipgit bool) error {
 	}
 
 	// Clone the Gophersaurus repository.
-	if err := exec.Command("git", "clone", "git@git.target.com:gophersaurus/gophersaurus.git").Run(); err != nil {
+	if err := exec.Command("git", "clone", "git@github.com:gophersaurus/framework.git").Run(); err != nil {
 		return err
 	}
 
 	// Rename gophersaurus directory by project name.
-	if err := os.Rename("gophersaurus", name); err != nil {
+	if err := os.Rename("framework", name); err != nil {
 		return err
 	}
 
 	// Find and replace gophersaurus/gophersaurus, with org/name in the entire directory.
-	replacement := map[string]string{"git.target.com/gophersaurus/gophersaurus": importpath}
+	replacement := map[string]string{"github.com/gophersaurus/framework": importpath}
 	if err = rewrite(name, replacement); err != nil {
 		return err
 	}
@@ -48,7 +48,7 @@ func create(name, git string, verbose, skip, skipgit bool) error {
 	if !skipgit {
 
 		// Set the git remote upstream for easy updating.
-		if err := exec.Command("git", "-C", name, "remote", "add", "upstream", "https://git.target.com/gophersaurus/gophersaurus.git").Run(); err != nil {
+		if err := exec.Command("git", "-C", name, "remote", "add", "upstream", "https://github.com/gophersaurus/framework.git").Run(); err != nil {
 			return err
 		}
 

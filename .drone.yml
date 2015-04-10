@@ -1,6 +1,6 @@
 image: bradrydzewski/go:1.4
 git:
-  path: git.target.com/gophersaurus/gf
+  path: github.com/gophersaurus/gf
 env:
   - GOROOT=/usr/local/go
   - PATH=$PATH:$GOROOT/bin:$GOPATH/bin
@@ -10,7 +10,7 @@ script:
   - go version
 
   # get the gf tool
-  - go get -v git.target.com/gophersaurus/gf
+  - go get -v github.com/gophersaurus/gf
   - gf -h
 
   # create directories
