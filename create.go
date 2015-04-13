@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"os"
 	"os/exec"
 	"path"
@@ -29,13 +30,18 @@ func create(name, git string, verbose, skip, skipgit bool) error {
 		return err
 	}
 
+	if err := os.RemoveAll(".tmp_gf"); err != nil {
+		return err
+	}
+
 	// Clone the Gophersaurus repository.
-	if err := exec.Command("git", "clone", "git@github.com:gophersaurus/framework.git").Run(); err != nil {
+	if err := exec.Command("git", "clone", "git@github.com:gophersaurus/framework.git", ".tmp_gf").Run(); err != nil {
+		fmt.Println()
 		return err
 	}
 
 	// Rename gophersaurus directory by project name.
-	if err := os.Rename("framework", name); err != nil {
+	if err := os.Rename(".tmp_gf", name); err != nil {
 		return err
 	}
 
