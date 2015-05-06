@@ -66,6 +66,17 @@ func main() {
 				}
 			},
 		},
+		{
+			Name:        "update",
+			Usage:       "Update the Gophersaurus framework.",
+			ShortName:   "u",
+			Description: "Use this command to update the Gophersaurus framework in the current directory.",
+			Action: func(c *cli.Context) {
+				if err := update(); err != nil {
+					panic(err)
+				}
+			},
+		},
 	}
 
 	// define the default action.
