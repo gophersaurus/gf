@@ -25,5 +25,6 @@ func src(name string) (string, error) {
 	}
 
 	// Use the $GOPATH to strip everything out, but the base git URL.
-	return current[len(gopath+"/src/"):] + "/" + name, nil
+	gopathsrc := filepath.Join(gopath, "/src") + string(os.PathSeparator)
+	return filepath.Join(current[len(gopathsrc):], name), nil
 }
