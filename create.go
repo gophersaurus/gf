@@ -6,6 +6,7 @@ import (
 	"os"
 	"os/exec"
 	"path"
+	"path/filepath"
 
 	"github.com/jbenet/go-os-rename"
 )
@@ -31,6 +32,7 @@ func create(name, git string, verbose, skip, skipgit bool) error {
 	if err != nil {
 		return err
 	}
+	cleanimportpath := filepath.ToSlash(importpath)
 
 	if err := os.RemoveAll(".gf_tmp"); err != nil {
 		return err
@@ -48,7 +50,7 @@ func create(name, git string, verbose, skip, skipgit bool) error {
 	}
 
 	// Find and replace gophersaurus/gophersaurus, with org/name in the entire directory.
-	replacement := map[string]string{"github.com/gophersaurus/framework": importpath}
+	replacement := map[string]string{"github.com/gophersaurus/framework": cleanimportpath}
 	if err = rewrite(name, replacement); err != nil {
 		return err
 	}
@@ -73,7 +75,7 @@ func create(name, git string, verbose, skip, skipgit bool) error {
 		}
 
 		// set the git remote origin based on go src file path.
-		if err := exec.Command("git", "-C", name, "remote", "set-url", "origin", "https://"+importpath+".git").Run(); err != nil {
+		if err := exec.Command("git", "-C", name, "remote", "set-url", "origin", "https://"+cleanimportpath+".git").Run(); err != nil {
 			return err
 		}
 	}
