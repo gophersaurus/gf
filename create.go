@@ -35,7 +35,7 @@ func create(name, git string, verbose, skip, skipgit bool) error {
 	}
 
 	// Clone the Gophersaurus repository.
-	if err := exec.Command("git", "clone", "git@github.com:gophersaurus/framework.git", ".tmp_gf").Run(); err != nil {
+	if err := exec.Command("git", "clone", "https://github.com/gophersaurus/framework.git", ".tmp_gf").Run(); err != nil {
 		fmt.Println()
 		return err
 	}
