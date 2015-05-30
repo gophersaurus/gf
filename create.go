@@ -6,6 +6,8 @@ import (
 	"os"
 	"os/exec"
 	"path"
+
+	"github.com/jbenet/go-os-rename"
 )
 
 // create creates a new Gopheraurus project.
@@ -30,18 +32,18 @@ func create(name, git string, verbose, skip, skipgit bool) error {
 		return err
 	}
 
-	if err := os.RemoveAll("tmp_gf"); err != nil {
+	if err := os.RemoveAll(".gf_tmp"); err != nil {
 		return err
 	}
 
 	// Clone the Gophersaurus repository.
-	if err := exec.Command("git", "clone", "https://github.com/gophersaurus/framework.git", "tmp_gf").Run(); err != nil {
+	if err := exec.Command("git", "clone", "https://github.com/gophersaurus/framework.git", ".gf_tmp").Run(); err != nil {
 		fmt.Println()
 		return err
 	}
 
 	// Rename gophersaurus directory by project name.
-	if err := os.Rename("tmp_gf", name); err != nil {
+	if err := osrename.Rename(".gf_tmp", name); err != nil {
 		return err
 	}
 

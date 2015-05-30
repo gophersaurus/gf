@@ -11,6 +11,7 @@ import (
 	"go/printer"
 	"go/token"
 
+	"github.com/jbenet/go-os-rename"
 	"github.com/kr/fs"
 )
 
@@ -113,5 +114,5 @@ func rewriteFile(name string, replace map[string]string) error {
 	}
 
 	// rename the .temp to .go
-	return os.Rename(temp, name)
+	return osrename.Rename(temp, name)
 }
