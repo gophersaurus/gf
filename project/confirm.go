@@ -1,4 +1,4 @@
-package tool
+package project
 
 // Code originally from Alex Browne. https://gist.github.com/albrow/5882501
 

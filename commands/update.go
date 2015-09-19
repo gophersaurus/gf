@@ -3,7 +3,7 @@ package commands
 import (
 	"log"
 
-	"github.com/gophersaurus/gf/tool"
+	"github.com/gophersaurus/gf/project"
 	"github.com/spf13/cobra"
 )
 
@@ -13,7 +13,7 @@ var UpdateCMD = &cobra.Command{
 	Short: "Update the Gophersaurus framework.",
 	Long:  "Update the Gophersaurus framework.",
 	Run: func(cmd *cobra.Command, args []string) {
-		if err := tool.Update(); err != nil {
+		if err := project.Update(); err != nil {
 			log.Fatal(err)
 		}
 	},
