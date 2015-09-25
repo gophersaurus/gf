@@ -1,14 +1,17 @@
-package controllers
+package templates
+
+// Controller
+var Controller = `package controllers
 
 import "github.com/gophersaurus/gf.v1/http"
 
-// {{ .Name }} is a controller.
-var {{ .Name }} = struct {
+// {{ . }} is a controller.
+var {{ . }} = struct {
 	Index func(resp http.Responder, req *http.Request)
 }{
 	Index: func(resp http.Responder, req *http.Request) {
 
 		// write the result
-		resp.Write(req, req)
+		resp.WriteFormat(req, req)
 	},
-}
+}`

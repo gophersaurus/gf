@@ -9,6 +9,7 @@ import (
 
 func init() {
 	GenerateCMD.AddCommand(generateControllerCMD)
+	GenerateCMD.AddCommand(generateModelCMD)
 }
 
 // GenerateCMD describes the GenerateCMD command.
@@ -25,6 +26,17 @@ var generateControllerCMD = &cobra.Command{
 	Long:  "Generate basic controller boilerplate.",
 	Run: func(cmd *cobra.Command, args []string) {
 		if err := generate.Controller(args); err != nil {
+			log.Fatal(err)
+		}
+	},
+}
+
+var generateModelCMD = &cobra.Command{
+	Use:   "model",
+	Short: "Generate a model.",
+	Long:  "Generate basic model boilerplate.",
+	Run: func(cmd *cobra.Command, args []string) {
+		if err := generate.Model(args); err != nil {
 			log.Fatal(err)
 		}
 	},
